@@ -1,17 +1,32 @@
-<div class="dashboard-container">
-    <h2 class="dashboard-title">Real-Time Patient Tracking</h2>
+<div class="dashboard">
+  <h2>Real-Time Patient Tracking</h2>
 
-    <div class="patient-grid">
-        <div class="patient-card" *ngFor="let patient of patients" [ngClass]="patient.status.toLowerCase()">
-            <div class="card-header">
-                <h3 class="patient-name">{{ patient.name }}</h3>
-                <span class="patient-status">{{ patient.status }}</span>
-            </div>
+  <div class="patient-grid">
+    <div class="patient-card"
+         *ngFor="let p of patients"
+         [class.rescued]="p.rescued"
+         [class.not-rescued]="!p.rescued">
 
-            <div class="card-body">
-                <p><strong>Last Updated:</strong> {{patient.lastUpdated | date:'MM/dd/yyyy h:mma' | lowercase}}</p>
-                <p><strong>Location:</strong> {{patient.latitude}}, {{patient.longitude}}</p>
-            </div>
-        </div>
+      <div class="header">
+        <h3>{{ p.name }}</h3>
+        <span class="status" [class.active]="p.status === 'active'"
+                             [class.inactive]="p.status === 'inactive'">
+          {{ p.status }}
+        </span>
+      </div>
+
+      <p class="single-line"><strong>Last Updated:</strong> {{ p.lastUpdated | date:'MM/dd/yyyy h:mma' }}</p>
+      <p class="single-line"><strong>Location:</strong> {{ p.latitude }}, {{ p.longitude }}</p>
+
+      <button *ngIf="!p.rescued" (click)="markRescued(p.id)" class="btn rescue">
+        Rescued
+      </button>
+
+      <button *ngIf="p.rescued" (click)="undoRescued(p.id)" class="btn undo">
+        Not Rescued
+      </button>
+
     </div>
+  </div>
 </div>
+

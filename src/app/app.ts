@@ -10,5 +10,5 @@ import { PatientListComponent } from './components/patient-list/patient-list.com
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Patient Tracking Dashboard');
+  protected readonly title = signal('Kapok Dashboard');
 }

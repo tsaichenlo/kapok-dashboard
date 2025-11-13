@@ -16,11 +16,27 @@ export class PatientListComponent implements OnInit {
   constructor(private patientService: PatientService) { }
 
   ngOnInit(): void {
-    this.getPatients();
+    this.loadPatients();
   }
 
-  getPatients(): void {
-    this.patientService.getPatients()
-      .subscribe(patients => this.patients = patients);
+  loadPatients(): void {
+    this.patientService.getPatients().subscribe({
+      next: patients => {
+        this.patients = patients
+      },
+      error: err => {
+        console.error('Error fetching patients:', err);
+      }
+    });
+  }
+
+  markRescued(id: string): void {
+    this.patientService.updatePatient(id, { rescued: true })
+      .subscribe(() => this.loadPatients());
+  }
+
+  undoRescued(id: string): void {
+    this.patientService.updatePatient(id, { rescued: false })
+      .subscribe(() => this.loadPatients());
   }
 }

@@ -1,81 +1,128 @@
-.dashboard-container {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 1.5rem 2rem;
-    background-color: #f9fafb;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    font-family: "Inter", "Helvetica Neue", sans-serif;
+.dashboard {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
 }
 
 .dashboard-title {
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 2rem;
     text-align: center;
     margin-bottom: 2rem;
-    color: #2c3e50;
+    font-weight: 700;
+
+    background: linear-gradient(135deg, #4F8FF7, #82A694);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
+
+/* Grid */
 .patient-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 1.5rem;
 }
 
+@keyframes smoothFloat {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    75% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Card Styling */
 .patient-card {
-    background-color: white;
-    border-radius: 12px;
+    background: #ffffff;
+    border-radius: 16px;
     padding: 1.2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border-left: 6px solid transparent;
+    border-left: 10px solid transparent;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+
+    animation: smoothFloat 5s ease-in-out infinite;
 }
 
-.patient-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Rescue state colors: soft + cute */
+.patient-card.rescued {
+    background: #e8ffe6;
+    /* pastel green */
+    border-left-color: #9ae79a;
 }
 
-.card-header {
+.patient-card.not-rescued {
+    background: #fff1f3;
+    /* soft blush pink */
+    border-left-color: #f5a8b8;
+}
+
+/* Header */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
 }
 
-.patient-name {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.patient-status {
+/* Status badge aesthetic */
+.status {
     padding: 0.3rem 0.8rem;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 500;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
     color: white;
     text-transform: capitalize;
 }
 
-.card-body p {
-    margin: 0.4rem 0;
+.status.active {
+    background: #9ae79a;
+    /* baby green */
+}
+
+.status.inactive {
+    background: #c7cdd4;
+    /* soft gray */
+}
+
+/* Buttons (aesthetic gradients) */
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 0.6rem;
+    font-weight: 600;
     font-size: 0.9rem;
-    color: #444;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s ease;
 }
 
-/* Status color variations */
-.patient-card.active .patient-status {
-    background-color: #2ecc71;
-    border-left-color: #2ecc71;
-}
-
-.patient-card.inactive .patient-status {
-    background-color: #95a5a6;
-    border-left-color: #95a5a6;
-}
-
-.patient-card.pending .patient-status {
-    background-color: #f1c40f;
-    border-left-color: #f1c40f;
+/* Pastel pink rescue button */
+.btn.rescue {
+    background: linear-gradient(135deg, #f5a8b8, #fff1f3);
 }
