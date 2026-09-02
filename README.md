@@ -22,6 +22,11 @@ This app expects a REST API at `http://localhost:3000`. To run one locally:
 
 `db.json` is seeded from `src/app/data/mock-patients.ts`; keep the two in sync if you change the sample data.
 
+## Family Status Portal
+
+A separate, lightweight React app (`/family-portal`) provides a public
+lookup view for family members — see `family-portal/README.md` to run it.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
