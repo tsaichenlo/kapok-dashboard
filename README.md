@@ -12,6 +12,16 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Running with mock backend
+
+This app expects a REST API at `http://localhost:3000`. To run one locally:
+
+1. `npm run mock-api` — starts [json-server](https://github.com/typicode/json-server) on port 3000, serving `db.json`
+2. In a separate terminal: `ng serve`
+3. Open `http://localhost:4200`
+
+`db.json` is seeded from `src/app/data/mock-patients.ts`; keep the two in sync if you change the sample data.
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:

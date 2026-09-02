@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { mockPatients } from '../data/mock-patients';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Patient } from '../models/patient';
 import { HttpClient } from '@angular/common/http';
 
