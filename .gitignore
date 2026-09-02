@@ -11,6 +11,12 @@
 npm-debug.log
 yarn-error.log
 
+# Backend (Express + SQLite) — generated locally
+/backend/node_modules
+/backend/patients.db
+/backend/patients.db-shm
+/backend/patients.db-wal
+
 # IDEs and editors
 .idea/
 .project
